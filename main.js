@@ -35,7 +35,7 @@ mostrarVariedades();
 
 let continuarComprando = true; //paara que entre en el while
 let compras = ""; //declaro una variable para almacenar las compras
-const carrito = [];
+const carrito = []; //array en cero para almacenar los precios para el carrito
 
 function agregarAlCarrito(precio) {
     carrito.push(precio);
