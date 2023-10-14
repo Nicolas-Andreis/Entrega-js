@@ -6,8 +6,8 @@ function saludar() {
 saludar();
 
 // Definición de la clase Producto para representar las pizzas
-class Producto{
-    constructor (nombre, precio){
+class Producto {
+    constructor(nombre, precio) {
         this.nombre = nombre;
         this.precio = precio;
     }
@@ -35,40 +35,53 @@ mostrarVariedades();
 
 let continuarComprando = true; //paara que entre en el while
 let compras = ""; //declaro una variable para almacenar las compras
-let totalComprado = 0; //declaro una variable en cero para almacenar el valor de las pizzas compradas
+const carrito = [];
+
+function agregarAlCarrito(precio) {
+    carrito.push(precio);
+}
+
+// Función para sumar los elementos del carrito
+function sumarCarrito(carrito) {
+    let total = 0;
+    for (let i = 0; i < carrito.length; i++) {
+        total += carrito[i];
+    }
+    return total;
+}
 
 // Inicio de un bucle while para continuar comprando
 while (continuarComprando) {
 
-// Creación de un mensaje que muestra las opciones de pizza disponibles
-let options = "Ingrese el número correspondiente a la pizza que desea comprar:\n";
+    // Creación de un mensaje que muestra las opciones de pizza disponibles
+    let options = "Ingrese el número correspondiente a la pizza que desea comprar:\n";
 
-// Recorriendo el array de productos para mostrar las opciones de pizza
-for (let i = 0; i < productos.length; i++) {
-    options += `${i + 1}. ${productos[i].nombre} $${productos[i].precio}\n`;
-}
+    // Recorriendo el array de productos para mostrar las opciones de pizza
+    for (let i = 0; i < productos.length; i++) {
+        options += `${i + 1}. ${productos[i].nombre} $${productos[i].precio}\n`;
+    }
 
-options += "Para salir, escriba 'ESC'";
+    options += "Para salir, escriba 'ESC'";
 
-//parseo el string para convertirlo en un numero
-let pizzaSeleccionada = parseInt(prompt(options));
+    //parseo el string para convertirlo en un numero
+    let pizzaSeleccionada = parseInt(prompt(options));
 
     switch (pizzaSeleccionada) {
         case 1:
             compras += "Pizza de muzzarella\n";
-            totalComprado += 2530;
+            agregarAlCarrito(2530);
             alert("Pizza de muzzarella comprada");
             break;
 
         case 2:
             compras += "Pizza de napolitana\n";
-            totalComprado += 2750;
+            agregarAlCarrito(2750);
             alert("Pizza de napolitana comprada");
             break;
 
         case 3:
             compras += "Pizza de fugazza\n";
-            totalComprado += 3000;
+            agregarAlCarrito(3000);
             alert("Pizza de fugazza comprada");
             break;
 
@@ -84,9 +97,12 @@ let pizzaSeleccionada = parseInt(prompt(options));
 
     if (continuarComprando) {
         continuarComprando = confirm("¿Desea seguir comprando?"); // devuelve true o false
-        }
     }
+}
 
+
+// Llamar a la función para obtener el total del carrito
+const totalComprado = sumarCarrito(carrito);
 
 alert("Gracias por su compra!");
 alert(`
