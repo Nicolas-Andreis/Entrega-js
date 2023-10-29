@@ -1,5 +1,7 @@
 // Seleccionar el contenedor del carrito
 const carritoContainer = document.getElementById("carrito");
+const vaciarCarritoButton = document.getElementById("vaciarCarrito");
+const comprarCarrito = document.getElementById("comprarCarrito");
 
 // Declarar un array con objetos
 const pizzas = [
@@ -114,7 +116,15 @@ function mostrarCarritoEnHTML() {
         <p id="numerito">0</p> 
     </div>    
     
-    `;
+    `    // Verificar si el carrito está vacío
+    if (carrito.length === 0) {
+        comprarCarrito.classList.add("disabled");
+        vaciarCarritoButton.classList.add("disabled");
+    } else {
+        comprarCarrito.classList.remove("disabled");
+        vaciarCarritoButton.classList.remove("disabled");
+    }
+    ;
 
     // Iterar a través de los productos en el carrito y mostrarlos con cantidades
     carrito.forEach(producto => {
@@ -157,7 +167,7 @@ function vaciarCarrito() {
 }
 
 // Agregar un evento al botón "Vaciar Carrito"
-const vaciarCarritoButton = document.getElementById("vaciarCarrito");
+
 vaciarCarritoButton.addEventListener("click", () => {
     // Llamar a la función para vaciar el carrito
     vaciarCarrito();
